@@ -27,7 +27,6 @@ const CartItem = ({ onContinueShopping }) => {
         cart.forEach((item) => {
             totalcount += item.quantity;
         })
-        console.log(totalcount);
         return totalcount;
     }
   };
@@ -46,7 +45,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
-    dispatch(handleRemoveFromCart(item));
+    dispatch(removeItem(item));
   };
   const handleCheckoutShopping = () => {
     alert("Functionality to be added for future reference");
