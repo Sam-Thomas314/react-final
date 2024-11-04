@@ -6,10 +6,9 @@ import './CartItem.css';
 import './ProductList.css';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
+  const cart = useSelector((state) => state.cart.items);
   
   const dispatch = useDispatch();
-
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     let totalamount = 0;
@@ -42,8 +41,9 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (index) => {
+    console.log("Cart");
     console.log(cart[index]);
-    //handleRemoveFromCart(index);
+    handleRemoveFromCart(cart[index]);
   };
   const handleCheckoutShopping = () => {
     alert("Functionality to be added for future reference");

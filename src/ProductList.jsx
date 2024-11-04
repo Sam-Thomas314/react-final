@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export const handleRemoveFromCart = (itemtoremove) => {
-    console.log("Here")
+    console.log("Here - Product Page")
     const [prevPlantsArray, setPlantsArray] = useState([]);
     
     setPlantsArray((prevPlantsArray) => {
