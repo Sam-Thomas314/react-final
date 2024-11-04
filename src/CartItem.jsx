@@ -33,9 +33,6 @@ const CartItem = ({ onContinueShopping }) => {
   const handleContinueShopping = (e) => {
     onContinueShopping(e);
   };
-
-
-
   const handleIncrement = (item) => {
     dispatch(updateQuantity(item));
   };
@@ -44,8 +41,9 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(decreaseQuantity(item));
   };
 
-  const handleRemove = (item) => {
-    dispatch(removeItem(item));
+  const handleRemove = (index) => {
+    console.log(cart[index]);
+    //handleRemoveFromCart(index);
   };
   const handleCheckoutShopping = () => {
     alert("Functionality to be added for future reference");

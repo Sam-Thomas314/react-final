@@ -4,6 +4,26 @@ import CartItem from './CartItem';
 import { addItem, removeItem} from './CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
+
+export const handleRemoveFromCart = (itemtoremove) => {
+    console.log("Here")
+    const [prevPlantsArray, setPlantsArray] = useState([]);
+    
+    setPlantsArray((prevPlantsArray) => {
+        return prevPlantsArray.map((category) => {
+            return {
+                ...category,
+                plants: category.plants.map((plant) => {
+                    console.log(category.plants.itemtoremove);
+                    if(plant.name === category.plants.itemtoremove) {
+                        return {...plant, added:false};
+                    }
+                    return plant;
+                }),
+            };
+        });
+    });
+  };
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -265,23 +285,8 @@ const continueshopping = (e) => {
         [thisplant.name]: true,
     }));
     
-  }
-  const handleRemoveFromCart = (removedItem) => {
-    const [prevPlantsArray, setPlantsArray] = useState([]);
-    setPlantsArray((prevPlantsArray) => {
-        return prevPlantsArray.map((category) => {
-            return {
-                ...category,
-                plants: category.plants.map((plant) => {
-                    if(plant.name === removeItem) {
-                        return {...plant, added:false};
-                    }
-                    return plant;
-                }),
-            };
-        });
-    });
   };
+  
   const newCartItems = useSelector((state) => state.cart.items);
 
   const calculateCartCount = () => {
