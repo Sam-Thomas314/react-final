@@ -7,7 +7,7 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-        const { name, image, cost, quantity } = action.payload;
+        const { name, image, cost } = action.payload;
         const existingItem = state.items.find(item => item.name === name);
         if (existingItem) {
             existingItem.quantity++;
@@ -24,25 +24,15 @@ export const CartSlice = createSlice({
     removeItem: (state, action, index) => {
         state.items = state.items.filter(item => item.name !== action.payload);
         
-        const newItems = [...state.items];
-        newItems.splice(index, 1);
-        state.items = newItems;
-        //return state.items !== action.target.value;
     },
 
-    decreaseQuantity: (state, action)=> {
-        const {name, quantity} = action.payload;
-        const itemtoChange = state.items.find(item => item.name === name)
-        if(itemtoChange && itemtoChange.quantity > 1) {
-            itemtoChange.quantity --;
-        }
-        
-    },
     updateQuantity: (state, action) => {
         const {name, quantity} = action.payload;
         const itemToUpdate = state.items.find(item => item.name === name)
         if (itemToUpdate) {
-            itemToUpdate.quantity ++;
+            itemToUpdate.quantity = quantity;
+            //this is why we can add the functionality to cartitem and not cart slice
+            //we set the new cartitem quantity previosly, and this simply applies that
 
         }
     },
@@ -54,8 +44,6 @@ export const {
      addItem, 
      removeItem, 
      updateQuantity, 
-     decreaseQuantity, 
-     TotalAmount, 
-     calculatetotalcount } = CartSlice.actions;
+    } = CartSlice.actions;
 
 export default CartSlice.reducer;
